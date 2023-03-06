@@ -4,8 +4,9 @@ namespace Soundboard
 {
     public partial class Form1 : Form
     {
+        OpenFileDialog ofd = new OpenFileDialog();
         WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
-        String filePath;
+        WMPLib.WindowsMediaPlayer player2 = new WMPLib.WindowsMediaPlayer();
 
         public Form1()
         {
@@ -19,25 +20,44 @@ namespace Soundboard
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Select Audio File";
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                filePath = ofd.FileName;
-                audioClipTB1.Text = filePath;
+                audioClipTB1.Text = ofd.FileName;
             }
         }
 
         private void playBtn1_Click(object sender, EventArgs e)
         {
             player.controls.play();
-            player.URL = filePath;
+            player.URL = audioClipTB1.Text;
             player.settings.volume = volume1.Value;
         }
 
         private void stop1_Click(object sender, EventArgs e)
         {
             player.controls.stop();
+        }
+
+        private void loadAudio2_Click(object sender, EventArgs e)
+        {
+            ofd.Title = "Select Audio File";
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                audioClipTB2.Text = ofd.FileName;
+            }
+        }
+
+        private void playBtn2_Click(object sender, EventArgs e)
+        {
+            player2.controls.play();
+            player2.URL = audioClipTB2.Text;
+            player2.settings.volume = volume2.Value;
+        }
+
+        private void stop2_Click(object sender, EventArgs e)
+        {
+            player2.controls.stop();
         }
     }
 }
