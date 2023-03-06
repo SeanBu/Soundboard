@@ -30,7 +30,7 @@ namespace Soundboard
         private void playBtn1_Click(object sender, EventArgs e)
         {
             player.controls.play();
-            player.URL = audioClipTB1.Text;
+            player.URL = getAudioClipURL(audioClipTB1);
             player.settings.volume = volume1.Value;
         }
 
@@ -51,13 +51,18 @@ namespace Soundboard
         private void playBtn2_Click(object sender, EventArgs e)
         {
             player2.controls.play();
-            player2.URL = audioClipTB2.Text;
+            player2.URL = getAudioClipURL(audioClipTB2);
             player2.settings.volume = volume2.Value;
         }
 
         private void stop2_Click(object sender, EventArgs e)
         {
             player2.controls.stop();
+        }
+
+        private string getAudioClipURL(TextBox textbox)
+        {
+            return textbox.Text;
         }
     }
 }
